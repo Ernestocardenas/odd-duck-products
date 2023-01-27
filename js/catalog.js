@@ -12,8 +12,13 @@ function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById('items');
   for (let i in state.allProducts) {
-
+    let newListItem = document.createElement('option');
+    newListItem.setAttribute('value', '${state.allProducts[i].name}');
+    newListItem.setAttribute('name','product')
+    newListItem.innerHTML=state.allProducts[i].name;
+    selectElement.appendChild(newListItem);
   }
+  document.getElementById(quantity).setAttribute('name','quantity');
 
 }
 
@@ -23,9 +28,11 @@ function populateForm() {
 function handleSubmit(event) {
 
   // TODO: Prevent the page from reloading
-
+  event.preventdefult();
+  let product = event.target.items.value;
+  let quantity = event.target.items.value;
   // Do all the things ...
-  addSelectedItemToCart();
+  addSelectedItemToCart(product,quantity);
   state.cart.saveToLocalStorage();
   state.cart.updateCounter();
   updateCartPreview();
@@ -33,7 +40,9 @@ function handleSubmit(event) {
 }
 
 // TODO: Add the selected item and quantity to the cart
-function addSelectedItemToCart() {
+function addSelectedItemToCart(product,quantity) {
+    state.cart.addItem(product,quantity);
+
   // TODO: suss out the item picked from the select list
   // TODO: get the quantity
   // TODO: using those, add one item to the Cart
@@ -41,6 +50,32 @@ function addSelectedItemToCart() {
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
+
+  let cartPreview = document.getElementById('cartContent');
+  let cartTable = document.createElement('table');
+  cartPreview.innerHTML = '';
+  let cartRow = document.createElement('tr');
+  let cartHeader = document.createElement('th');
+  let cartTH = document.createElement('th');
+  cartHeader.innerText ='Product';
+  cartTH.innerText = 'Quantity';
+  cartPreview.appendChild(cartTable);
+  cartTable.appendChild(cartRow);
+  cartRow.appendChild(cartHeader);
+  cartRow.appendChild(cartTH);
+
+    for (let i = 0; i < state.cart.items.length; i++){
+      let listItem = document.createElement('tr');
+      let itemName = document.createElement('td');
+      let itemQuantity = document.createElement('td');
+      itemName.innerText = state.cartItems[i].product;
+      itemQuantity.innerText = state.cart.itemName[i].quantity;
+
+      listItem.appendChild(itemName);
+      listItem.appendChild(itemQuantity);
+      cartTable.appendChild(listItem);
+    }
+
   // TODO: Get the item and quantity from the form
   // TODO: Add a new element to the cartContents div with that information
 }
