@@ -6,20 +6,7 @@ const table = document.getElementById('cart');
 table.addEventListener('click', removeItemFromCart);
 
 function loadCart() {
-
-  let cartItems = [];
-
-  if (!JSON.parse(localStorage.getItem('savedCart'))){
-    state.cart = new Cart(cartItems);
-    return;
-  }
-
-  let baseJSON = JSON.parse(localStorage.getItem('savedCart'));
-
-  for (let i = 0; i < baseJSON.length; i++){
-    let objectVersion = new CartItem(baseJSON[i].product, baseJSON[i].quantity);
-    cartItems.push(objectVersion);
-  }  
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   state.cart = new Cart(cartItems);
 }
 
