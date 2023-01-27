@@ -1,10 +1,13 @@
 /* TODO: Make it awesome */
 
 h1 {
-    font-size: 30px;
+    font-size: 35px;
     text-align: center;
     padding: 1rem;
     margin: 1rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(0, 191, 255);
 }
 
 #catalog{
@@ -13,6 +16,8 @@ h1 {
 
 ul {
 
+    text-align: center;
+    margin: 10px;
 
 }
 
@@ -28,17 +33,33 @@ header {
 
 body {
     background-color: lavender;
-    align-items: center;
-
+    text-align: center;
+    justify-content: center;
+    margin-left: 300px;
+    margin-right: 300px; 
 }
 
 .copy {
-
+    background-color: rgba(148, 46, 251, 0.241);
+    width: 600px;
+    height: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    color: rgb(6, 6, 216);
+    border-radius: 1%;
+    font-size: 18px;
+    -webkit-text-stroke: .2px;
+    -webkit-text-stroke-color: white;
+    border: 1px solid rgba(128, 0, 128, 0.105);
+    
+    
+    box-shadow: 10px;
 
 }
 
-.deck col-1 {
-
+legend {
+    text-decoration: underline;
+    margin-bottom: 5px;
 }
 
 .deck col-2 {
@@ -47,22 +68,42 @@ body {
 }
 
 table {
-
+    
 
 
 }
 
-tr {
-
+td {
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
 th {
+    text-align: center;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    font-size: medium;
 
 
 }
 
 ol {
-
     
+}
+li {
+    text-align: center;
+}
+
+a {
+    display: inline-block;
+
+}
+
+p {
+    margin-top: 10px;
 }
