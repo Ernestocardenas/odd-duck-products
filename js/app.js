@@ -32,9 +32,22 @@ Cart.prototype.removeItem = function(item) {
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
 
+  /*  TA help with remove item 
+
   if (this.items.includes(item)) {
   this.items.splice(item, 1);
-  }  
+  }
+  */  
+
+  for(let i =0; i< this.items.length; i++){
+    if (this.items[i].product === item.product){
+      if(this.items[i].quantity === item.quantity){
+        this.items.splice(i, 1);
+        return true;
+      }
+    }
+  }
+  return false;
 
 };
 

@@ -6,7 +6,20 @@ const table = document.getElementById('cart');
 table.addEventListener('click', removeItemFromCart);
 
 function loadCart() {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+  let cartItems = [];
+
+  if (!JSON.parse(localStorage.getItem('savedCart'))){
+    state.cart = new Cart(cartItems);
+    return;
+  }
+
+  let baseJSON = JSON.parse(localStorage.getItem('savedCart'));
+
+  for (let i = 0; i < baseJSON.length; i++){
+    let objectVersion = new CartItem(baseJSON[i].product, baseJSON[i].quantity);
+    cartItems.push(objectVersion);
+  }  
   state.cart = new Cart(cartItems);
 }
 
@@ -19,7 +32,6 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-
   let cartPreview = document.getElementById('cart-container');
   cartPreview.innerHTML = '';
 }
@@ -38,26 +50,26 @@ function showCart() {
   let cartTable = document.createElement('table');
   cartPreview.innerHTML = '';
   let cartRow = document.createElement('tr');
-  let cartHeader = document.createElement('th');
+  let cartHeader = document.createElement('th')
   let cartTH = document.createElement('th');
-  cartHeader.innerText ='Product';
+  cartHeader.innerText = 'Product';
   cartTH.innerText = 'Quantity';
   cartPreview.appendChild(cartTable);
   cartTable.appendChild(cartRow);
   cartRow.appendChild(cartHeader);
   cartRow.appendChild(cartTH);
 
-    for (let i = 0; i < state.cart.items.length; i++){
-      let listItem = document.createElement('tr');
-      let itemName = document.createElement('td');
-      let itemQuantity = document.createElement('td');
-      itemName.innerText = state.cartItems[i].product;
-      itemQuantity.innerText = state.cart.itemName[i].quantity;
+  for (let i = 0; i < state.cart.items.length; i++) {
+    let listItem = document.createElement('tr');
+    let itemName = document.createElement('td');
+    let itemQuantity = document.createElement('td');
+    itemName.innerText = state.cart.items[i].product;
+    itemQuantity.innerText = state.cart.items[i].quantity;
 
-      listItem.appendChild(itemName);
-      listItem.appendChild(itemQuantity);
-      cartTable.appendChild(listItem);
-    }
+    listItem.appendChild(itemName);
+    listItem.appendChild(itemQuantity);
+    cartTable.appendChild(listItem);
+  }
 }
 
 
